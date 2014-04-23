@@ -1,3 +1,4 @@
-import gui
+from gui import *
 
-porthonGui = gui.Gui()
+print("ornot")
+porthonGui = Gui()
