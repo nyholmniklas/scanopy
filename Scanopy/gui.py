@@ -12,8 +12,10 @@ class Gui(threading.Thread):
     def run(self):
         self.root.mainloop()
 
-    def sayHi(self):
-        print("hi")
+    def outputToConsole(self, newText):
+        labelText = self.consoleLabel.cget("text") + newText
+        self.consoleLabel = Label(self.consoleFrame, text=labelText)
+        self.consoleLabel.pack()
 
     def initComponents(self):
         root = self.root
@@ -40,5 +42,12 @@ class Gui(threading.Thread):
         fileBrowserButton.grid(row=1, column=2, padx=5, pady=5)
         scanButton.grid(row=2, column=2, padx=10, pady=10)
 
+        #Console Frame
+        self.consoleFrame = Frame(root)
+        self.consoleFrame.pack(expand=1, pady=15, padx=15)
+        self.consoleLabel = Label(self.consoleFrame, text="")
+        self.consoleLabel.pack()
+
     def scan(self):
-        self.scanner.testCallback(self)
+        #This is where you need to make the root.after calls so the gui doesnt freeze!!
+        self.scanner.scan(self)
