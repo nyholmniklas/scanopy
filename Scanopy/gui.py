@@ -10,8 +10,13 @@ class Gui(object):
     def initComponents(self):
         root = self.root
 
-        #Init Input Frame
+        #Main Frame
+        #mainFrame = Frame(root)
+        #mainFrame.pack(side=LEFT, expand=1)
+
+        #Input Frame
         inputFrame = Frame(root)
+        inputFrame.pack(expand=1, pady=50, padx=50)
 
         #Init Components
         rangeLabel = Label(inputFrame, text="Range:")
@@ -21,20 +26,8 @@ class Gui(object):
         fileEntry = Entry(inputFrame)
 
         #Set Component Grid Positions
-        rangeLabel.grid(row=0, column=0)
-        rangeStartEntry.grid(row=0, column=1)
-        rangeEndEntry.grid(row=0, column=2)
-        fileLabel.grid(row=1, column=0)
-        fileEntry.grid(row=1, column=1)
-
-        #Pack Components
-        #rangeLabel.pack(in_=inputFrame)
-        #rangeStartEntry.pack(in_=inputFrame)
-        #rangeEndEntry.pack(in_=inputFrame)
-        #fileLabel.pack(in_=inputFrame)
-        #fileEntry.pack(in_=inputFrame)
-
-        #Pack Input Frame
-        inputFrame.pack(side="top", fill="x")
-
-        print("at least here")
+        rangeLabel.grid(row=0, column=0, padx=5, pady=5)
+        rangeStartEntry.grid(row=0, column=1, padx=5, pady=5)
+        rangeEndEntry.grid(row=0, column=2, padx=5, pady=5)
+        fileLabel.grid(row=1, column=0, padx=5, pady=5)
+        fileEntry.grid(row=1, column=1, padx=5, pady=5)
