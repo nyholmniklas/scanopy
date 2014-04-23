@@ -1,11 +1,19 @@
 from Tkinter import *
+import threading
 
 
-class Gui(object):
-    def __init__(self):
+class Gui(threading.Thread):
+    def __init__(self, scanner):
+        threading.Thread.__init__(self)
         self.root = Tk()
+        self.scanner = scanner
         self.initComponents()
+
+    def run(self):
         self.root.mainloop()
+
+    def sayHi(self):
+        print("hi")
 
     def initComponents(self):
         root = self.root
@@ -21,7 +29,7 @@ class Gui(object):
         fileLabel = Label(inputFrame, text="Output File:")
         fileEntry = Entry(inputFrame)
         fileBrowserButton = Button(inputFrame, text="Browse")
-        scanButton = Button(inputFrame, text="Scan")
+        scanButton = Button(inputFrame, text="Scan", command=self.scan)
 
         #Set Component Grid Positions
         rangeLabel.grid(row=0, column=0, padx=5, pady=5)
@@ -31,3 +39,6 @@ class Gui(object):
         fileEntry.grid(row=1, column=1, padx=5, pady=5)
         fileBrowserButton.grid(row=1, column=2, padx=5, pady=5)
         scanButton.grid(row=2, column=2, padx=10, pady=10)
+
+    def scan(self):
+        self.scanner.testCallback(self)
