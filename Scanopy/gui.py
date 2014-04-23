@@ -10,13 +10,9 @@ class Gui(object):
     def initComponents(self):
         root = self.root
 
-        #Main Frame
-        #mainFrame = Frame(root)
-        #mainFrame.pack(side=LEFT, expand=1)
-
         #Input Frame
         inputFrame = Frame(root)
-        inputFrame.pack(expand=1, pady=50, padx=50)
+        inputFrame.pack(expand=1, pady=15, padx=15)
 
         #Init Components
         rangeLabel = Label(inputFrame, text="Range:")
@@ -24,6 +20,8 @@ class Gui(object):
         rangeEndEntry = Entry(inputFrame)
         fileLabel = Label(inputFrame, text="Output File:")
         fileEntry = Entry(inputFrame)
+        fileBrowserButton = Button(inputFrame, text="Browse")
+        scanButton = Button(inputFrame, text="Scan")
 
         #Set Component Grid Positions
         rangeLabel.grid(row=0, column=0, padx=5, pady=5)
@@ -31,3 +29,5 @@ class Gui(object):
         rangeEndEntry.grid(row=0, column=2, padx=5, pady=5)
         fileLabel.grid(row=1, column=0, padx=5, pady=5)
         fileEntry.grid(row=1, column=1, padx=5, pady=5)
+        fileBrowserButton.grid(row=1, column=2, padx=5, pady=5)
+        scanButton.grid(row=2, column=2, padx=10, pady=10)
