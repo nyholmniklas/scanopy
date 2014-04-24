@@ -83,6 +83,7 @@ class Gui(threading.Thread):
     
     def output_host(self):
         ip = self.rangeStartEntry.get()
+        #TODO Catch exception from scanner below!!!
         self.output_console("Resolved hostname to: " + self.scanner.getHostByIp(ip))
     
     def stopScan(self):
