@@ -38,6 +38,7 @@ class Gui(threading.Thread):
         self.rangeEndEntry.insert(0, "173.194.40.249")
         portLabel = Label(inputFrame, text="Port:")
         self.portEntry = Entry(inputFrame)
+        self.portEntry.insert(0, "80")
         scanButton = Button(inputFrame, text="Scan", command=self.scan)
 
         # Set Component Grid Positions
@@ -52,7 +53,7 @@ class Gui(threading.Thread):
         # Console Frame
         self.consoleFrame = Frame(root)
         self.consoleFrame.pack(expand=1, pady=15, padx=15)
-        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=50, height=12, state=DISABLED)
+        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=40, height=12, state=DISABLED)
         self.consoleText.pack()
 
     def scan(self):
@@ -67,5 +68,5 @@ class Gui(threading.Thread):
             self.output_console(result)
             self.ip_scan_index += 1
             if self.ip_scan_index < len(ip_list):
-                self.root.after(1000, scanIp)
+                self.root.after(1400, scanIp)
         scanIp()

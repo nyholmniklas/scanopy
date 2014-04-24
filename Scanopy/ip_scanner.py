@@ -7,9 +7,9 @@ class PortScanner:
     def scan(self, ip, port):
         ping_result = self.scanPort(ip, port)
         if (ping_result):
-            return "Ping on "+str(ip)+":"+str(port)+" SUCCESS."
+            return str(ip)+":"+str(port)+" >>> OPEN <<<"
         else:
-            return "Ping on "+str(ip)+":"+str(port)+" failed."
+            return str(ip)+":"+str(port)+" closed"
     
     def scanPort(self, ip, port):
         connSkt = socket(AF_INET, SOCK_STREAM)
