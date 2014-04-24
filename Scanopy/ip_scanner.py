@@ -7,7 +7,10 @@ class IpScanner:
     def scan(self, ip):
         port = 80
         ping_result = self.ping(ip, port)
-        return ip + str(ping_result)
+        if (ping_result):
+            return "Ping on "+str(ip)+":"+str(port)+" SUCCESS."
+        else:
+            return "Ping on "+str(ip)+":"+str(port)+" failed."
     
     def ping(self, ip, port):
         connSkt = socket(AF_INET, SOCK_STREAM)
