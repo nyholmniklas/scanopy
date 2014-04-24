@@ -41,6 +41,7 @@ class Gui(threading.Thread):
         portLabel = Label(inputFrame, text="Port:")
         self.portEntry = Entry(inputFrame)
         self.portEntry.insert(0, "80")
+        hostButton = Button(inputFrame, text="Resolve host", command=self.output_host)
         stopButton = Button(inputFrame, text="Stop", command=self.stopScan)
         scanButton = Button(inputFrame, text="Scan", command=self.scan)
 
@@ -49,10 +50,11 @@ class Gui(threading.Thread):
         endLabel.grid(row=0, column=2, padx=5, pady=5, sticky=W)
         self.rangeStartEntry.grid(row=0, column=1, padx=5, pady=5)
         self.rangeEndEntry.grid(row=0, column=3, padx=5, pady=5)
-        portLabel.grid(row=1, column=0, padx=5, pady=5, sticky=W)
-        self.portEntry.grid(row=1, column=1, padx=5, pady=5)
-        stopButton.grid(row=0, column=4, padx=5, pady=5)
-        scanButton.grid(row=1, column=4, padx=5, pady=5)
+        portLabel.grid(row=1, column=2, padx=5, pady=5, sticky=W)
+        self.portEntry.grid(row=1, column=3, padx=5, pady=5)
+        hostButton.grid(row=1, column=1, padx=5, pady=5)
+        scanButton.grid(row=0, column=4, padx=10, pady=5)
+        stopButton.grid(row=1, column=4, padx=10, pady=5)
 
         # Console Frame
         self.consoleFrame = Frame(root)
@@ -78,6 +80,10 @@ class Gui(threading.Thread):
                     return
                 self.root.after(1400, scanIp)
         scanIp()
+    
+    def output_host(self):
+        ip = self.rangeStartEntry.get()
+        self.output_console("Resolved hostname to: " + self.scanner.getHostByIp(ip))
     
     def stopScan(self):
         self.stop = True

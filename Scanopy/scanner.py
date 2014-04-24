@@ -7,9 +7,6 @@ class Scanner:
         result = ""
         if (ping_result):
             result= ""
-            host = gethostbyaddr(ip)[0]
-            if host != None:
-                result += "Resolved hostname to " + host + "\n"
             result += str(ip)+":"+str(port)+" >>> OPEN <<<"
         else:
             result = str(ip)+":"+str(port)+" closed"
@@ -25,6 +22,9 @@ class Scanner:
             return False
         finally:
             connSkt.close()
+    
+    def getHostByIp(self, ip):
+        return gethostbyaddr(ip)[0]
             
     def getIpAddressesFromRange(self, start_ip_address, end_ip_address):
         start_address_elements = start_ip_address.split('.')
