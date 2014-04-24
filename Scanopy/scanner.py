@@ -26,7 +26,7 @@ class Scanner:
         finally:
             connSkt.close()
             
-    def getIpAddressesFromRange(start_ip_address, end_ip_address):
+    def getIpAddressesFromRange(self, start_ip_address, end_ip_address):
         start_address_elements = start_ip_address.split('.')
         end_address_elements = end_ip_address.split('.')
         ip_list = []
