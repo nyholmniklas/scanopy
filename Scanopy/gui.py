@@ -7,6 +7,7 @@ class Gui(threading.Thread):
     def __init__(self, scanner):
         threading.Thread.__init__(self)
         self.root = Tk()
+        self.root.geometry("500x500")
         self.root.title("Scanopy - Port Scanner")
         self.scanner = scanner
         self.initComponents()
@@ -27,8 +28,8 @@ class Gui(threading.Thread):
         root = self.root
 
         # Input Frame
-        inputFrame = Frame(root)
-        inputFrame.pack(expand=1, pady=15, padx=15)
+        inputFrame = Frame(root, width="200")
+        inputFrame.pack(pady=15, padx=15)
 
         # Init Components
         startLabel = Label(inputFrame, text="Start:")
@@ -55,9 +56,9 @@ class Gui(threading.Thread):
 
         # Console Frame
         self.consoleFrame = Frame(root)
-        self.consoleFrame.pack(expand=1, pady=15, padx=15)
-        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=60, height=12, state=DISABLED)
-        self.consoleText.pack()
+        self.consoleFrame.pack(expand=1, pady=15, padx=15, fill= BOTH)
+        self.consoleText = Text(self.consoleFrame, fg="green", bg="black",state=DISABLED)
+        self.consoleText.pack(expand=1, fill= BOTH)
 
     def scan(self):
         self.stop = False
