@@ -70,6 +70,7 @@ class Gui(threading.Thread):
         port = self.portEntry.get()
         self.ip_scan_index = 0
         # Kindof recursive function with call to root.after() to keep gui from freezing
+        self.output_console("\nScanning ip range " + start_ip + " - " + end_ip+"...")
         def scanIp():
             result = self.scanner.scan(ip_list[self.ip_scan_index], port)
             self.output_console(result)
@@ -83,8 +84,10 @@ class Gui(threading.Thread):
     
     def output_host(self):
         ip = self.rangeStartEntry.get()
-        #TODO Catch exception from scanner below!!!
-        self.output_console("Resolved hostname to: " + self.scanner.getHostByIp(ip))
+        try:
+            self.output_console("\nResolved hostname to: " + self.scanner.getHostByIp(ip))
+        except:
+            self.output_console("\nCould not resolve hostname for: "+ ip)
     
     def stopScan(self):
         self.stop = True
