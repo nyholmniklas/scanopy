@@ -2,8 +2,8 @@ import time
 
 class IpScanner:
 
-    def scan(self, start_ip, end_ip):
-        x = 0
-        while (x < 200000):
-            gui.outputToConsole(str(x))
-            x += 1
+    def scan(self, ip):
+        #TODO Actucally scan something :D:D
+        print(ip)
+        #time.sleep(4)
+        return ip

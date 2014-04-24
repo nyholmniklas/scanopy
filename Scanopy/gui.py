@@ -1,6 +1,7 @@
 from Tkinter import *
 import threading
 import internet_protocol
+import time
 
 class Gui(threading.Thread):
     def __init__(self, scanner):
@@ -12,11 +13,9 @@ class Gui(threading.Thread):
     def run(self):
         self.root.mainloop()
 
-    def outputToConsole(self, new_text):
+    def output_callback(self, new_text):
         labelText = self.consoleLabel.cget("text") + new_text
-        self.consoleLabel.pack_forget()
-        self.consoleLabel = Label(self.consoleFrame, text=labelText)
-        self.consoleLabel.pack()
+        self.consoleLabel['text'] = new_text
 
     def initComponents(self):
         root = self.root
@@ -51,12 +50,16 @@ class Gui(threading.Thread):
         self.consoleLabel = Label(self.consoleFrame, text="")
         self.consoleLabel.pack()
 
-    
-
     def scan(self):
-        #This is where you need to make the root.after calls so the gui doesnt freeze!!
         start_ip = self.rangeStartEntry.get()
         end_ip = self.rangeEndEntry.get()
         ip_list = internet_protocol.getIpAddressesFromRange(start_ip, end_ip)
-        #self.scanner.scan(start_ip, end_ip)
-        
+        self.ip_scan_index = 0
+        #Kindof recursive function with call to root.after() to keep gui from freezing
+        def scanIp():
+            result = self.scanner.scan(ip_list[self.ip_scan_index])
+            self.output_callback("Scanning: "+result)
+            self.ip_scan_index += 1
+            if self.ip_scan_index < len(ip_list):
+                self.root.after(1000, scanIp)
+        scanIp()

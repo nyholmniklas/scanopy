@@ -13,7 +13,7 @@ def getIpAddressesFromRange(start_ip_address, end_ip_address):
         for b in range(int(start_address_elements[1]), int(end_address_elements[1])+1):
             for c in range(int(start_address_elements[2]), int(end_address_elements[2])+1):
                 for d in range(int(start_address_elements[3]), int(end_address_elements[3])+1):
-                    print(str(a)+"."+str(b)+"."+str(c)+"."+str(d))
+                    #print(str(a)+"."+str(b)+"."+str(c)+"."+str(d))
                     ip_list.append(str(a)+"."+str(b)+"."+str(c)+"."+str(d))
     print(len(ip_list))
     
