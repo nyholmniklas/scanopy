@@ -53,7 +53,7 @@ class Gui(threading.Thread):
         # Console Frame
         self.consoleFrame = Frame(root)
         self.consoleFrame.pack(expand=1, pady=15, padx=15)
-        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=40, height=12, state=DISABLED)
+        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=60, height=12, state=DISABLED)
         self.consoleText.pack()
 
     def scan(self):
