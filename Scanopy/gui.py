@@ -12,6 +12,7 @@ class Gui(threading.Thread):
         self.initComponents()
         self.console_rows = 0
         self.max_console_rows = 20
+        self.stop = False
 
     def run(self):
         self.root.mainloop()
@@ -39,6 +40,7 @@ class Gui(threading.Thread):
         portLabel = Label(inputFrame, text="Port:")
         self.portEntry = Entry(inputFrame)
         self.portEntry.insert(0, "80")
+        stopButton = Button(inputFrame, text="Stop", command=self.stopScan)
         scanButton = Button(inputFrame, text="Scan", command=self.scan)
 
         # Set Component Grid Positions
@@ -48,7 +50,8 @@ class Gui(threading.Thread):
         self.rangeEndEntry.grid(row=0, column=3, padx=5, pady=5)
         portLabel.grid(row=1, column=0, padx=5, pady=5, sticky=W)
         self.portEntry.grid(row=1, column=1, padx=5, pady=5)
-        scanButton.grid(row=1, column=3, padx=10, pady=10)
+        stopButton.grid(row=0, column=4, padx=5, pady=5)
+        scanButton.grid(row=1, column=4, padx=5, pady=5)
 
         # Console Frame
         self.consoleFrame = Frame(root)
@@ -57,6 +60,7 @@ class Gui(threading.Thread):
         self.consoleText.pack()
 
     def scan(self):
+        self.stop = False
         start_ip = self.rangeStartEntry.get()
         end_ip = self.rangeEndEntry.get()
         ip_list = self.scanner.getIpAddressesFromRange(start_ip, end_ip)
@@ -68,5 +72,11 @@ class Gui(threading.Thread):
             self.output_console(result)
             self.ip_scan_index += 1
             if self.ip_scan_index < len(ip_list):
+                if self.stop:
+                    self.stop = False
+                    return
                 self.root.after(1400, scanIp)
         scanIp()
+    
+    def stopScan(self):
+        self.stop = True
