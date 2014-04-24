@@ -17,8 +17,10 @@ class Gui(threading.Thread):
         self.root.mainloop()
 
     def output_console(self, new_text):
+        self.consoleText.config(state=NORMAL)
         self.consoleText.insert(END, "\n" + new_text)
         self.consoleText.see(END)
+        self.consoleText.config(state=DISABLED)
 
     def initComponents(self):
         root = self.root
@@ -50,7 +52,7 @@ class Gui(threading.Thread):
         # Console Frame
         self.consoleFrame = Frame(root)
         self.consoleFrame.pack(expand=1, pady=15, padx=15)
-        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=70)
+        self.consoleText = Text(self.consoleFrame, fg="green", bg="black", width=70, state=DISABLED)
         self.consoleText.pack()
 
     def scan(self):
