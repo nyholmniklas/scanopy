@@ -3,7 +3,6 @@ from socket import *
 class Scanner:
 
     def scan(self, ip, port):
-        print("shouldnt")
         ping_result = self.scanPort(ip, port)
         result = ""
         if (ping_result):
