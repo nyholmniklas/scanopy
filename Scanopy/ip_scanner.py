@@ -2,21 +2,20 @@
 from socket import *
 #import sh
 
-class IpScanner:
+class PortScanner:
 
-    def scan(self, ip):
-        port = 80
-        ping_result = self.ping(ip, port)
+    def scan(self, ip, port):
+        ping_result = self.scanPort(ip, port)
         if (ping_result):
             return "Ping on "+str(ip)+":"+str(port)+" SUCCESS."
         else:
             return "Ping on "+str(ip)+":"+str(port)+" failed."
     
-    def ping(self, ip, port):
+    def scanPort(self, ip, port):
         connSkt = socket(AF_INET, SOCK_STREAM)
         connSkt.settimeout(1)
         try:
-            connSkt.connect((ip, port))
+            connSkt.connect((ip, int(port)))
             return True
         except:
             return False
