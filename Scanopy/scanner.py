@@ -3,7 +3,7 @@ from socket import *
 class Scanner:
 
     def scan(self, ip, port):
-        ping_result = self.scanPort(ip, port)
+        ping_result = self.isPortOpen(ip, port)
         result = ""
         if (ping_result):
             result= ""
@@ -15,7 +15,7 @@ class Scanner:
             result = str(ip)+":"+str(port)+" closed"
         return result
     
-    def scanPort(self, ip, port):
+    def isPortOpen(self, ip, port):
         connSkt = socket(AF_INET, SOCK_STREAM)
         connSkt.settimeout(1)
         try:
