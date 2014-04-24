@@ -1,6 +1,6 @@
 from Tkinter import *
 import threading
-import internet_protocol
+import scanner
 import time
 
 class Gui(threading.Thread):
@@ -59,7 +59,7 @@ class Gui(threading.Thread):
     def scan(self):
         start_ip = self.rangeStartEntry.get()
         end_ip = self.rangeEndEntry.get()
-        ip_list = internet_protocol.getIpAddressesFromRange(start_ip, end_ip)
+        ip_list = self.scanner.getIpAddressesFromRange(start_ip, end_ip)
         port = self.portEntry.get()
         self.ip_scan_index = 0
         # Kindof recursive function with call to root.after() to keep gui from freezing

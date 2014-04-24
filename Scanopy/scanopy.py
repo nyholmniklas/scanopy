@@ -1,8 +1,7 @@
 from gui import *
-from ip_scanner import *
-#import threading
+from scanner import *
 
 if __name__ == '__main__':
-    scanner = PortScanner()
+    scanner = Scanner()
     gui_thread = Gui(scanner)
     gui_thread.start()
