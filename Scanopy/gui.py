@@ -27,9 +27,9 @@ class Gui(threading.Thread):
         #Init Components
         rangeLabel = Label(inputFrame, text="Range:")
         self.rangeStartEntry = Entry(inputFrame)
-        self.rangeStartEntry.insert(0, "0.0.0.0")
+        self.rangeStartEntry.insert(0, "173.194.40.241")
         self.rangeEndEntry = Entry(inputFrame)
-        self.rangeEndEntry.insert(0, "1.15.10.5")
+        self.rangeEndEntry.insert(0, "173.194.40.249")
         fileLabel = Label(inputFrame, text="Output File:")
         fileEntry = Entry(inputFrame)
         fileBrowserButton = Button(inputFrame, text="Browse")
@@ -61,5 +61,5 @@ class Gui(threading.Thread):
             self.output_callback("Scanning: "+result)
             self.ip_scan_index += 1
             if self.ip_scan_index < len(ip_list):
-                self.root.after(1000, scanIp)
+                self.root.after(1500, scanIp)
         scanIp()

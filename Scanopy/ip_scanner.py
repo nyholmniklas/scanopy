@@ -1,9 +1,21 @@
-import time
+#import time
+from socket import *
+#import sh
 
 class IpScanner:
 
     def scan(self, ip):
-        #TODO Actucally scan something :D:D
-        print(ip)
-        #time.sleep(4)
-        return ip
+        port = 80
+        ping_result = self.ping(ip, port)
+        return ip + str(ping_result)
+    
+    def ping(self, ip, port):
+        connSkt = socket(AF_INET, SOCK_STREAM)
+        connSkt.settimeout(1)
+        try:
+            connSkt.connect((ip, port))
+            return True
+        except:
+            return False
+        finally:
+            connSkt.close()
