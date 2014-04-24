@@ -17,7 +17,7 @@ class Scanner:
         connSkt = socket(AF_INET, SOCK_STREAM)
         connSkt.settimeout(1)
         try:
-            #connSkt.connect((ip, int(port)))
+            connSkt.connect((ip, int(port)))
             return True
         except:
             return False
