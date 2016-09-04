@@ -7,7 +7,7 @@ class Gui(threading.Thread):
     def __init__(self, scanner):
         threading.Thread.__init__(self)
         self.root = Tk()
-        self.root.geometry("500x500")
+        self.root.geometry("550x500")
         self.root.title("Scanopy - Port Scanner")
         self.scanner = scanner
         self.initComponents()
