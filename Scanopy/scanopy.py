@@ -4,4 +4,4 @@ from scanner import *
 if __name__ == '__main__':
     scanner = Scanner()
     gui_thread = Gui(scanner)
-    gui_thread.start()
+    gui_thread.run()
