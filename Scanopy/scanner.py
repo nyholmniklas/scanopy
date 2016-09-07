@@ -5,12 +5,9 @@ class Scanner:
 
     def scan(self, ip, port):
         ping_result = self.isPortOpen(ip, port)
-        result = ""
         if (ping_result):
             result= ""
             result += str(ip)+":"+str(port)+" >>> OPEN <<<"
-        else:
-            result = str(ip)+":"+str(port)+" closed"
         return result
     
     def isPortOpen(self, ip, port):
